@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+    <script src="https://use.fortawesome.com/99966411.js"></script>
+
+    <title>자취생에 의한 자취생만을 위한 너만의 레시피</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang&display=swap" rel="stylesheet">
+    <!-- style.css 파일을 같은 폴더에 만들고, head 태그에서 불러오기 -->
+    <link rel="stylesheet" type="text/css" href="\static\css\main.css">
+    <script src="../static/js/scrollMove.js"></script>
+    <style>
+        body {
+            background-color: #b1be96;
+            font-family: 'Gowun Batang', serif;
+        }
+
+        .page_top {
+            height: 100vh;
+            background-image: url("/static/image/source/top-view-1248955.jpg");
+            background-size: cover;
+
+
+        }
+
+        .page_top h1 {
+            color: white;
+            text-align: center;
+            padding: 200px 0;
+        }
+
+        .page2 {
+            background-color: #b1be96;
+            top: 100vh;
+            position: relative;
+            margin: 12%;
+        }
+
+        .page2_col {
+
+            width: 1100px;
+            margin: 0 auto;
+
+
+        }
+
+        .navbar navbar-expand-lg bg-light {
+            background-image: url("/static/image/source/top-view-1248955.jpg");
+        }
+
+        .page3 {
+            background-color: #b1be96;
+            top: 100vh;
+            height: 100vh;
+            position: relative
+
+        }
+
+        .rec_bar {
+            margin: 105px auto;
+            height: 700px;
+            width: 1400px;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: stretch;
+            padding: 0 20px;
+
+        }
+
+        .rec_bar_inner {
+            padding-top: 5px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+        }
+
+        .card {
+            height: 100%;
+            border: 0
+        }
+
+        .nav-link {
+            color: white;
+            font-size: 1rem;
+        }
+
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+        }
+
+        .ingredient-li {
+            list-style-type: none;
+        }
+
+        .imageDefault {
+            width: 230px;
+            height: 325px;
+            background-size: cover;
+            background-position: center;
+            margin-top: 10px;
+        }
+
+        .item-center {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .page_icon {
+            width: 120px;
+            height: 50px;
+            margin: 100px auto;
+            font-size: 2rem;
+            color: whitesmoke
+        }
+
+        .main3card {
+            padding: 0.5rem 0.5rem;
+            width: 100%;
+            text-align: center;
+            background-color: rgba(247, 247, 247, 0.8);
+            flex: 0;
+        }
+
+        .main_subtitle {
+            text-align: center;
+            margin: 50px 0;
+            background-color: whitesmoke;
+            width: 1100px;
+        }
+
+        .arrowBtn {
+            background-color: rgba(0, 0, 0, 0);
+            font-size: 50px;
+            border: 0;
+            width: 100px;
+            height: 100px;
+        }
+
+        .arrowWrap {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: #c7c7c7;
+        }
+
+        ::-webkit-scrollbar-track {
+            border-radius: 5px;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.25);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 5px;
+            background-color: #3A3845;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background-color: #7a7686;
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="page_top" style="top:0;left:0;position:absolute;width: 100%">
+    <div class="head-div" style="position: fixed;z-index: 1500"></div>
+    <nav class="navbar navbar-expand-lg" style="top:0; left:0;position:fixed;z-index: 2000">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">혼자서도 잘해요리</a> <!-- 수정위치 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" aria-current="page" href="/search/?page=1">전체 레시피</a>
+                    <a class="nav-link" href="/write">나만의 레시피</a>
+                    <a class="nav-link" href="/myrecipe/{{ user.id }}">마이페이지</a>
+
+                </div>
+            </div>
+        </div>
+
+        <div>
+
+            <div class="navbar-nav" style="width:300px">
+                {% if user.is_authenticated %}
+                    <a class="nav-link">{{ user }} 님 반갑습니다</a>
+                    <a class="nav-link" href="/logout">로그아웃</a>
+                {% else %}
+                    <a class="myPageLink" href="/login">
+                        <img src="/static/image/source/myPageIcon.png" class="loginIcon"/>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+    <div class="head-div" style="position: fixed;z-index: 1500"></div>
+    <div style="width:100% ;height:100vh; background-color: rgb(0,0,0,0.8); position: absolute">
+        <h1 style="font-size: 6rem; margin: 180px auto; position: relative">혼자서도 잘해요리</h1>
+        <div class="arrowWrap">
+            <button class="arrowBtn" style="color:white" onclick="goToScroll(1)"><i class="fa fa-angle-down"></i>
+            </button>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="page2">
+    <div class="page2_col">
+        <h3 class="main_subtitle"> {{ user.username }} 님이 마지막으로 클릭한 레시피예요!</h3>
+
+        <div class="card mb-3"
+             style="width: 100%; height: 700px; box-shadow: 0 1px 5px 3px rgba(0, 0, 0, .12); overflow: hidden">
+            <div class="row g-0">
+                <div class="col-md-4" style="width:550px; height: 700px; overflow: hidden">
+                    <div style="width:550px; height:100%; object-fit: cover">
+                        <div style="background-image: url({{ reco_main.img_url }});
+                                background-position: center; background-size: cover;
+                                width: 100%; height: 100%;">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8" style="width: 500px">
+                    <div class="card-body" style="padding-left:50px">
+                        <div style="height:40px"></div>
+                        <h2 style="font-weight: 900;">{{ reco_main.title }}</h2>
+                        <br>
+                        <hr>
+                        <br>
+
+                        <div class="random-food-recipe-difficulty">
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <img src="\static\image\source\time.png" alt="이미지"
+                                     style="width: 30px; height: 30px; margin-bottom: 10px"/>
+                                <p style="font-weight: 500;">{{ reco_main.timecost }}</p>
+                            </div>
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                                <img src="\static\image\source\star.png" alt="이미지"
+                                     style="width: 30px; height: 30px; margin-bottom: 10px"/>
+                                <p style="font-weight: 500;">{{ reco_main.difficulty }}</p>
+                            </div>
+                        </div>
+                        <div style="margin-top: 55px; margin-left: 10px">
+                            <p style="font-weight: 600;">최소한 이건 준비하자!</p>
+                            <div class="ingredient">
+                                <ul>
+                                    {% for ing in reco_ing %}
+                                        <li class="ingredient-li">{{ ing }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="arrowWrap">
+        <button class="arrowBtn" onclick="goToScroll(2)"><i class="fa fa-angle-down"></i></button>
+    </div>
+</div>
+
+</div>
+
+<div class="page3">
+    <div style="height: 40px; background-color: #b1be96"></div>
+
+    <div class="rec_bar">
+        <h3 class="main_subtitle" style="margin: 80px auto"> 클릭한 레시피를 바탕으로 추천해드릴게요!</h3>
+        <div class="rec_bar_inner">
+
+            {% for reco_recipe in reco_recipes %}
+                <div class="card item-center"
+                     style="width: 18rem; height:25rem; background-image: url({{ reco_recipe.img_url }}); background-size:cover">
+                    <div class="imageDefault"></div>
+                    <div class="card-body main3card">
+                        <p class="card-text"><a style="color:black; font-size: 1.2rem"
+                                                href="/detail/{{ reco_recipe.id }}">{{ reco_recipe.title|slice:10 }}</a>
+                        </p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="arrowWrap">
+        <button class="arrowBtn" onclick="goToScroll(3)"><i class="fa fa-angle-up"></i></button>
+    </div>
+</div>
+
+</body>
+</html>
