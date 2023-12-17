@@ -277,19 +277,33 @@ body {
     box-shadow: 0 -3px 2.5px -0.3px #E1E1E1;
 }
 
+/*추가*/
+.detail-tab-content {
+    background-color: black; /* 검은색 배경 */
+    padding: 20px; /* 모든 측면에 대한 padding 설정 */
+    display: flex; /* Flexbox 사용 */   
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    height: 100%; /* 필요한 경우 높이 설정 */
+  }
+    
 .tabContent {
     display: none;
     padding: 60px 70px 60px 70px;
     box-shadow: rgba(193,193,193,0.92) 0 2pt 2pt -0.5pt;
     background-color: #c3d391;
-    width:980px;
+    width:980px;    
     box-sizing: border-box;
 }
 
-
 .tabContent.current {
     display: inherit;
+    /*추가*/
+    background-color: white; /* 흰색 배경 */
+    width: calc(100% - 40px); /* 양쪽 패딩을 고려한 너비 설정 */
+    margin: auto; /* 상하 마진 자동으로 설정하여 세로 중앙 정렬 */    
 }
+
 .iconWrap {
     padding-top: 10px;
     padding-left: 40px;
@@ -350,7 +364,10 @@ body {
 
 .ingredientWrap {
     padding: 20px 20px 20px 20px;
+
+
 }
+
 
 .ingTitle {
     display: inline-block;

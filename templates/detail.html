@@ -78,7 +78,7 @@
             background-image: url("/static/image/source/top-view-1248955.jpg");
             width: 1070px;
             margin: 60px auto;
-            height: 1300px;
+            height: 1500px;
         }
 
         .comment {
@@ -225,9 +225,9 @@
 
                         </ul>
                     </div>
-                    <div class="detail-tab-content">
-                        <div id="tab-1" class="tabContent current"
-                             style="height:570px;width:950px; background-color:whitesmoke;">
+                    <div class="detail-tab-content; position: relative;">
+                        <div id="tab-1" class="tabContent current"  
+                             style="background-color:whitesmoke; position: relative;">
                             <div class="iconWrap" id="iconWrap">
                                 <!--                                조리시간, 난이도 아이콘 들어가는 정보 박스 부분-->
                                 <p style="font-size: 25px"><img class="size20"
@@ -241,12 +241,12 @@
                             {% if not like_status %}
                                 <form method="post" action="/detail/like/{{ recipe.id }}" class="likeform">
                                     {% csrf_token %}
-                                    <button class="btn btn-success" style="margin: 20px 0;">꺼야꺼야 요리할꺼야</button>
+                                    <button class="btn btn-success" style="margin: 20px 0;">책갈피</button>
                                 </form>
                             {% else %}
                                 <form method="post" action="/detail/like/{{ recipe.id }}" class="likeform">
                                     {% csrf_token %}
-                                    <button class="btn btn-danger" style="margin: 20px 0;">아니아니 안할꺼야</button>
+                                    <button class="btn btn-danger" style="margin: 20px 0;">책갈피 해제</button>
                                 </form>
                             {% endif %}
                             <br><br>
@@ -280,7 +280,7 @@
                             </div>
                         </div>
                         <div id="tab-2" class="tabContent"
-                             style="height:570px;width:950px; background-color:whitesmoke; overflow: auto;">
+                             style="height:auto;width:950px; background-color:whitesmoke; overflow: auto;">
                             <div class="processWrap">
                                 <span class="processTitle">📌 이정돈 만들 수 있다!</span>
                                 <hr class="line">
@@ -385,7 +385,7 @@
                             </div>
                         </div>
                         <div id="tab-4" class="tabContent"
-                             style="height:570px; width:950px; background-color:whitesmoke; ">
+                             style="height:570px; width:950px;background-color:whitesmoke;">
                             <div>
                         <span class="reviewTitle">📌 이 레시피와 비슷한 레시피!
 
