@@ -28,8 +28,8 @@ def view_main(request):
         reco_main_id = int((target_reco.reco1.strip('()').split(',')[0])) + 1
         reco_main = Recipe.objects.get(id=reco_main_id)
         # main_ingredients와 sub_ingredients 필드를 사용합니다.
-        main_ing = reco_main.main_ingredients.split('>')[:5]
-        sub_ing = reco_main.sub_ingredients.split('>')[:5]
+        main_ing = reco_main.main_ingredients.split(',')[:5]
+        sub_ing = reco_main.sub_ingredients.split(',')[:5]
     except ObjectDoesNotExist:
         # reco_main 또는 Recipe에서 레코드를 찾을 수 없을 때의 처리
         reco_main = None

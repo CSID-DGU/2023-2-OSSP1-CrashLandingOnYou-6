@@ -20,11 +20,11 @@ def view_detail(request, id):
     all_comment = CommentModel.objects.filter(comment_recipe=id).order_by('-created_at')
 
     # 타겟 재료 정제 (main_ingredients와 sub_ingredients로 분리)
-    target_main_ing = target_recipe.main_ingredients.split('>')  # 메인 재료
-    target_sub_ing = target_recipe.sub_ingredients.split('>')  # 서브 재료
+    target_main_ing = target_recipe.main_ingredients.split(',')  # 메인 재료
+    target_sub_ing = target_recipe.sub_ingredients.split(',')  # 서브 재료
 
     # 타겟 순서 정제
-    target_step = target_recipe.cookstep.split('>')
+    target_step = target_recipe.cookstep.split(',')
     del target_step[-1]
 
     try:
