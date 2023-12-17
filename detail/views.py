@@ -1,3 +1,4 @@
+#from urllib import request
 from django.shortcuts import render, redirect
 from detail.models import LikeModel
 from django.contrib.auth.decorators import login_required
@@ -6,45 +7,53 @@ from .models import CommentModel
 from post.models import Recipe
 from recommend.models import RecommendModel
 from user.models import UserModel
+from django.shortcuts import render, get_object_or_404
 
 
 # Create your views here.
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from .models import Recipe, LikeModel, CommentModel
+from django.http import HttpResponse
+
 def view_detail(request, id):
-    me = request.user.id
-    target_recipe = Recipe.objects.get(id=id)
+    # 현재 로그인한 사용자의 ID를 가져옵니다.
+    user_id = request.user.id if request.user.is_authenticated else None
+
+    # 선택한 레시피를 가져옵니다.
+    target_recipe = get_object_or_404(Recipe, id=id)
+
+    # 해당 레시피에 대한 좋아요 정보를 가져옵니다.
     target_like = LikeModel.objects.filter(like_recipe=id)
     target_user_list = [like.like_me_id for like in target_like]
 
-    iLikeThis = me in target_user_list
+    # 사용자가 해당 레시피를 좋아하는지 확인합니다.
+    user_likes_this = user_id in target_user_list
 
-    all_comment = CommentModel.objects.filter(comment_recipe=id).order_by('-created_at')
+    # 해당 레시피에 대한 모든 댓글을 가져옵니다.
+    all_comments = CommentModel.objects.filter(comment_recipe=id).order_by('-created_at')
 
-    # 타겟 재료 정제 (main_ingredients와 sub_ingredients로 분리)
-    target_main_ing = target_recipe.main_ingredients.split(',')  # 메인 재료
-    target_sub_ing = target_recipe.sub_ingredients.split(',')  # 서브 재료
+    # 레시피의 재료와 조리 순서를 분리합니다.
+    target_main_ingredients = target_recipe.main_ingredients.split(',') if target_recipe.main_ingredients else []
+    target_sub_ingredients = target_recipe.sub_ingredients.split(',') if target_recipe.sub_ingredients else []
+    target_cook_steps = target_recipe.cookstep.split(',') if target_recipe.cookstep else []
 
-    # 타겟 순서 정제
-    target_step = target_recipe.cookstep.split(',')
-    del target_step[-1]
+    # 유사 레시피 찾기
+    similar_recipes = Recipe.objects.filter(
+        main_ingredients__icontains=target_recipe.main_ingredients
+    ).exclude(id=id)[:5]  # 유사한 재료를 사용하는 다른 레시피 5개를 가져옵니다.
 
-    try:
-        is_update = request.session['commentupdate']
-        target_comment = CommentModel.objects.get(id=request.session['mycomment'])
-    except:
-        is_update = False
-        target_comment = ''
-
-    return render(request, 'detail.html', {
+    context = {
         'recipe': target_recipe,
-        'like_status': iLikeThis,
-        'comment': all_comment,
-        'main_ing_list': target_main_ing,
-        'sub_ing_list': target_sub_ing,
-        'cookstep_list': target_step,
-        'reco_list': [],
-        'is_update': is_update,
-        'target_comment': target_comment
-    })
+        'like_status': user_likes_this,
+        'comment': all_comments,
+        'main_ingredients_list': target_main_ingredients,
+        'sub_ingredients_list': target_sub_ingredients,
+        'cookstep_list': target_cook_steps,
+        'similar_recipes': similar_recipes,  # 추천 레시피 추가
+    }
+
+    return render(request, 'detail.html', context)
 
 
 @login_required
@@ -114,4 +123,3 @@ def comment_update_end(request, id):
         commentupdate = False
         request.session['commentupdate'] = commentupdate
         return redirect(f'/detail/{target_recipe}')
-

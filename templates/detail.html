@@ -257,14 +257,14 @@
 
                                 <!-- 메인 재료 출력 -->
                                 <ul class="ingList" id="mainIngList">
-                                    {% for ing in main_ing_list %}
+                                    {% for ing in main_ingredients_list %}
                                     <li>{{ ing }}</li>
                                     {% endfor %}
                                 </ul>
                                 
                                 <!-- 서브 재료 출력 -->
                                 <ul class="ingList" id="subIngList">
-                                    {% for ing in sub_ing_list %}
+                                    {% for ing in sub_ingredients_list %}
                                     <li>{{ ing }}</li>
                                     {% endfor %}
                                 </ul>
@@ -389,18 +389,30 @@
                             <div>
                         <span class="reviewTitle">📌 이 레시피와 비슷한 레시피!
 
-                        <hr class="line">
-                            <div class="row row-cols-1  card-group">
-                                <!-- 레시피 List 들어가는 부분-->
-                                {% for reco in reco_list %}
-                                    <div class="reviewListWrap recoWrap" id="reviewList">
-                                            <img style="height:130px; object-fit: cover"
-                                                 src={{ reco.img_url }} class="recoImg">
-                                            <a style="font-size: 1rem;color:gray"
-                                               href="/detail/{{ reco.id }}">{{ reco.title|slice:15 }}...</a>
-                                </div>
+                            <hr class="line">
+                            <div class="row row-cols-1 row-cols-md-3 g-4 card-group">
+                                {% for similar_recipe in similar_recipes %}
+                                    <div class="col">
+                                        <div class="card h-100">
+                                            <!-- 이미지가 있는 경우 -->
+                                            {% if similar_recipe.img_url %}
+                                                <img src="{{ similar_recipe.img_url }}" class="card-img-top" alt="{{ similar_recipe.title }}">
+                                            {% else %}
+                                                <!-- 이미지 파일이 없는 경우 기본 이미지 또는 대체 텍스트 사용 -->
+                                                <img src="/path/to/default-image.jpg" class="card-img-top" alt="{{ similar_recipe.title }}">
+                                            {% endif %}
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{ similar_recipe.title }}</h5>
+                                                <!-- 기타 유사 레시피 정보 -->
+                                            </div>
+                                            <div class="card-footer">
+                                                <a href="/detail/{{ similar_recipe.id }}" class="btn btn-primary">자세히 보기</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 {% endfor %}
                             </div>
+                            
 
                         </span>
                             </div>
