@@ -17,7 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 
-SECRET_KEY = ''
+SECRET_KEY = 'Dlatkfkd0525'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -90,7 +90,7 @@ DATABASES = {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'teamf4',
             'USER': 'root',
-            'PASSWORD': '',
+            'PASSWORD': 'Dlatkfkd0525',
             'HOST': 'localhost',
             'PORT': '3306'
             }

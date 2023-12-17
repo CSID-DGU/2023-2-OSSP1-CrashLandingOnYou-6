@@ -7,56 +7,28 @@ from post.models import Recipe
 from recommend.models import RecommendModel
 from user.models import UserModel
 
+
 # Create your views here.
 def view_detail(request, id):
     me = request.user.id
     target_recipe = Recipe.objects.get(id=id)
     target_like = LikeModel.objects.filter(like_recipe=id)
-    target_user_list = []
-    for index in range(target_like.count()):
-        index = target_like[index].like_me_id
-        target_user_list.append(index)
+    target_user_list = [like.like_me_id for like in target_like]
 
-    if me in target_user_list:
-        iLikeThis = True
-    else:
-        iLikeThis = False
+    iLikeThis = me in target_user_list
+
     all_comment = CommentModel.objects.filter(comment_recipe=id).order_by('-created_at')
-    """
-    try:
-        target_reco = RecommendModel.objects.get(id=id)
-    except:
-        target_reco = RecommendModel.objects.get(id=100)
-    reco_list = []
-    reco_list.append(int(target_reco.reco1.strip('()').split(',')[0]) + 1)
-    reco_list.append(int(target_reco.reco2.strip('()').split(',')[0]) + 1)
-    reco_list.append(int(target_reco.reco3.strip('()').split(',')[0]) + 1)
-    reco_list.append(int(target_reco.reco4.strip('()').split(',')[0]) + 1)
-    reco_list.append(int(target_reco.reco5.strip('()').split(',')[0]) + 1)
-    reco_recipes = []
-    for reco_num in reco_list:
-        reco_recipe = Recipe.objects.get(id=reco_num)
-        reco_recipes.append(reco_recipe)
-    try:
-        request.session['latestRecipe'] = str(target_recipe.id)
-    except:
-        request.session['latestRecipe'] = 1
-        """
 
-    # 타겟 재료 정제
-    target_ing = target_recipe.ingredient
-    target_ing = target_ing.split('>')
-    del target_ing[-1]
+    # 타겟 재료 정제 (main_ingredients와 sub_ingredients로 분리)
+    target_main_ing = target_recipe.main_ingredients.split('>')  # 메인 재료
+    target_sub_ing = target_recipe.sub_ingredients.split('>')  # 서브 재료
 
     # 타겟 순서 정제
-    target_step = target_recipe.cookstep
-    target_step = target_step.split('>')
+    target_step = target_recipe.cookstep.split('>')
     del target_step[-1]
 
     try:
-        # 세션이 있다면
         is_update = request.session['commentupdate']
-        # 아이디로 코멘트 가져오기
         target_comment = CommentModel.objects.get(id=request.session['mycomment'])
     except:
         is_update = False
@@ -66,10 +38,10 @@ def view_detail(request, id):
         'recipe': target_recipe,
         'like_status': iLikeThis,
         'comment': all_comment,
-        'ing_list': target_ing,
+        'main_ing_list': target_main_ing,
+        'sub_ing_list': target_sub_ing,
         'cookstep_list': target_step,
-        #'reco_list': reco_recipes,
-        'reco_list' : [],
+        'reco_list': [],
         'is_update': is_update,
         'target_comment': target_comment
     })

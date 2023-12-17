@@ -255,6 +255,22 @@
                                 <hr class="line">
                                 <br>
 
+                                <!-- 메인 재료 출력 -->
+                                <ul class="ingList" id="mainIngList">
+                                    {% for ing in main_ing_list %}
+                                    <li>{{ ing }}</li>
+                                    {% endfor %}
+                                </ul>
+                                
+                                <!-- 서브 재료 출력 -->
+                                <ul class="ingList" id="subIngList">
+                                    {% for ing in sub_ing_list %}
+                                    <li>{{ ing }}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+
                                 <ul class="ingList" id="ingList">
                                     <!--                                    레시피 재료 들어가는 부분-->
                                     {% for ing in ing_list %}
@@ -268,13 +284,17 @@
                             <div class="processWrap">
                                 <span class="processTitle">📌 이정돈 만들 수 있다!</span>
                                 <hr class="line">
-                                <ul class="processList" id="processList">
-                                    <!--                                    레시피 조리과정 들어가는 부분-->
-                                    {% for step in cookstep_list %}
+
+                                <!--수정 레시피 구분문자없이-->
+                                <!--<ul class="processList" id="processList">-->
+                                    <!--레시피 조리과정 들어가는 부분-->
+                                    <!--{% for step in cookstep_list %}
                                         <p>{{ step }}</p>
 
                                     {% endfor %}
-                                </ul>
+                                </ul>-->
+
+                                <p>{{ recipe.cookstep }}</p>
                             </div>
                         </div>
                         <div id="tab-3" class="tabContent"

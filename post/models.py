@@ -12,8 +12,11 @@ class Recipe(models.Model):
     img_url = models.URLField(max_length=300, null=False, default='')
     timecost = models.CharField(max_length=10, null=True)
     difficulty = models.CharField(max_length=10, null=False) 
-    ingredient = models.TextField(null=False)
+    #ingredient = models.TextField(null=False)
     cookstep = models.TextField(null=False)
+    main_ingredients = models.TextField(null=False)
+    sub_ingredients = models.TextField(null=False)
+
 
     author = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)

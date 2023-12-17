@@ -179,18 +179,31 @@
                         </div>
 
                         <hr style="width: 600px; border: 1px solid #8C8C8C;">
-                        <!--레시피 재료-->
+                        <!--레시피 재료
                         <div class="recipe-ingredient">
                             <p class="ingredient-title">레시피 재료</p>
                             <div class="row g-3" id="recipe-ing">
                                 <div class="input-ingredient col col-row">
-                                    <textarea name="ingredient" class="form-control" cols="30"
-                                              name="ingredient"> {{ target_recipe.ingredient }} </textarea>
+                                    <textarea name="main_ingredients" class="form-control" cols="30"
+                                              name="main_ingredients"> {{ target_recipe.ingredient }} </textarea>
                                 </div>
 
                             </div>
                         </div>
-                        <hr style="width: 600px; border: 1px solid #8C8C8C;">
+                        <hr style="width: 600px; border: 1px solid #8C8C8C;">-->
+
+                        <!-- 메인재료 입력 칸-->
+                        <div class="form-group">
+                            <label for="main_ingredients">메인 재료</label>
+                            <textarea id="main_ingredients" name="main_ingredients" class="form-control" placeholder="메인 재료를 입력하세요" required></textarea>
+                        </div>
+                        
+                        <!-- 서브재료 입력 칸 -->
+                        <div class="form-group">
+                            <label for="sub_ingredients">서브 재료</label>
+                            <textarea id="sub_ingredients" name="sub_ingredients" class="form-control" placeholder="서브 재료를 입력하세요" required></textarea>
+                        </div>
+
                         <!--조리 순서-->
                         <div class="recipe-order" id="recipe-order">
                             <p class="order-title">조리 순서</p>
@@ -268,9 +281,9 @@
                         </div>
 
                         <hr style="width: 600px; border: 1px solid #8C8C8C;">
-                        <!--레시피 재료-->
+                        <!--레시피 재료
                         <div class="recipe-ingredient">
-                            <p class="ingredient-title">레시피 재료</p>
+                            <p class="ingredient-title">메인 재료</p>
                             <div class="row g-3" id="recipe-ing">
                                 <div class="input-ingredient col col-row">
                                     <textarea name="ingredient" class="form-control" cols="30"
@@ -279,7 +292,19 @@
 
                             </div>
                         </div>
-                        <hr style="width: 600px; border: 1px solid #8C8C8C;">
+                        <hr style="width: 600px; border: 1px solid #8C8C8C;">-->
+
+                        <!-- 메인재료 입력 칸 -->
+                        <div class="form-group">
+                            <label for="main_ingredients">메인 재료</label>
+                            <textarea id="main_ingredients" name="main_ingredients" class="form-control" placeholder="메인 재료를 입력하세요" required></textarea>
+                        </div>
+                        
+                        <!-- 서브재료 입력 칸 -->
+                        <div class="form-group">
+                            <label for="sub_ingredients">서브 재료</label>
+                             <textarea id="sub_ingredients" name="sub_ingredients" class="form-control" placeholder="서브 재료를 입력하세요" required></textarea>
+                            </div>
                         <!--조리 순서-->
                         <div class="recipe-order" id="recipe-order">
                             <p class="order-title">조리 순서</p>

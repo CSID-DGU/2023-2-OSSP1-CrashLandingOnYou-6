@@ -25,32 +25,41 @@ def view_main(request):
         target_reco = RecommendModel.objects.get(id=2)
 
     try:
-        reco_main = int((target_reco.reco1.strip('()').split(',')[0])) + 1 #수정한 부분/ 예외처리
-        reco_main = Recipe.objects.get(id=reco_main)
-        reco_ing = reco_main.ingredient.split('>')[:5]
+        reco_main_id = int((target_reco.reco1.strip('()').split(',')[0])) + 1
+        reco_main = Recipe.objects.get(id=reco_main_id)
+        # main_ingredients와 sub_ingredients 필드를 사용합니다.
+        main_ing = reco_main.main_ingredients.split('>')[:5]
+        sub_ing = reco_main.sub_ingredients.split('>')[:5]
     except ObjectDoesNotExist:
         # reco_main 또는 Recipe에서 레코드를 찾을 수 없을 때의 처리
         reco_main = None
-        reco_ing = None
+        main_ing = None
+        sub_ing = None
 
-    # 템플릿 컨텍스트에 reco_main 추가
-    context = {'reco_main': reco_main, 'reco_ing': reco_ing}
+    # 템플릿 컨텍스트에 reco_main과 함께 main_ing, sub_ing 추가
+    context = {
+        'reco_main': reco_main, 
+        'main_ing': main_ing, 
+        'sub_ing': sub_ing
+    }
 
-    # 나머지 코드 실행
-
-    # 템플릿 렌더링 및 HTTP 응답
-    return render(request, 'main.html', context)
-
+    # 추천 레시피 리스트 생성
     reco_list = []
-    reco_list.append(int(target_reco.reco2.strip('()').split(',')[0]) + 1)
-    reco_list.append(int(target_reco.reco3.strip('()').split(',')[0]) + 1)
-    reco_list.append(int(target_reco.reco4.strip('()').split(',')[0]) + 1)
-    reco_list.append(int(target_reco.reco5.strip('()').split(',')[0]) + 1)
-    reco_recipes = []
-    for reco_num in reco_list:
-        reco_recipe = Recipe.objects.get(id=reco_num)
-        reco_recipes.append(reco_recipe)
-    return render(request, 'main.html', {'reco_main': reco_main, 'reco_recipes': reco_recipes, 'reco_ing':reco_ing})
+    for reco in [target_reco.reco2, target_reco.reco3, target_reco.reco4, target_reco.reco5]:
+        try:
+            reco_id = int(reco.strip('()').split(',')[0]) + 1
+            reco_recipe = Recipe.objects.get(id=reco_id)
+            reco_list.append(reco_recipe)
+        except ObjectDoesNotExist:
+            pass
+
+    return render(request, 'main.html', {
+        'reco_main': reco_main, 
+        'reco_recipes': reco_list, 
+        'main_ing': main_ing, 
+        'sub_ing': sub_ing
+    })
+
 
 
 
@@ -192,10 +201,11 @@ def upload_recipes(request):
         img_file = request.FILES.get('img_url', '')
         timecost = request.POST.get('timecost', '')
         difficulty = request.POST.get('difficulty', '')
-        ingredient = request.POST.get('ingredient', '')
         cookstep = request.POST.get('cookstep', '')
+        main_ingredients = request.POST.get('main_ingredients', '')
+        sub_ingredients = request.POST.get('sub_ingredients', '')
 
         my_post = Recipe.objects.create(author=author, title=title, img_file=img_file, timecost=timecost,
-                                        difficulty=difficulty, ingredient=ingredient, cookstep=cookstep)
+                                        difficulty=difficulty, cookstep=cookstep, main_ingredients=main_ingredients, sub_ingredients=sub_ingredients)
         my_post.save()
         return redirect('/')
