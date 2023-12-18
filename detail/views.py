@@ -10,11 +10,8 @@ from user.models import UserModel
 from django.shortcuts import render, get_object_or_404
 
 
-# Create your views here.
-from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, get_object_or_404
 from .models import Recipe, LikeModel, CommentModel
-from django.http import HttpResponse
 
 def view_detail(request, id):
     # 현재 로그인한 사용자의 ID를 가져옵니다.
@@ -39,21 +36,34 @@ def view_detail(request, id):
     target_cook_steps = target_recipe.cookstep.split(',') if target_recipe.cookstep else []
 
     # 유사 레시피 찾기
-    similar_recipes = Recipe.objects.filter(
-        main_ingredients__icontains=target_recipe.main_ingredients
-    ).exclude(id=id)[:5]  # 유사한 재료를 사용하는 다른 레시피 5개를 가져옵니다.
+    clicked_main_ingredients = set(target_recipe.main_ingredients.split(', '))
+    clicked_classification = target_recipe.classification
+    clicked_sub_ingredients = set(target_recipe.sub_ingredients.split(', '))
+
+    filtered_recipes = Recipe.objects.filter(
+        main_ingredients__in=clicked_main_ingredients,
+        classification=clicked_classification
+    ).exclude(id=id)
+
+    def calculate_similarity(recipe):
+        recipe_sub_ingredients = set(recipe.sub_ingredients.split(', '))
+        return len(clicked_sub_ingredients.intersection(recipe_sub_ingredients))
+
+    sorted_recipes = sorted(filtered_recipes, key=calculate_similarity, reverse=True)
+    top_similar_recipes = sorted_recipes[:5]
 
     context = {
         'recipe': target_recipe,
         'like_status': user_likes_this,
-        'comment': all_comments,
+        'comments': all_comments,
         'main_ingredients_list': target_main_ingredients,
         'sub_ingredients_list': target_sub_ingredients,
-        'cookstep_list': target_cook_steps,
-        'similar_recipes': similar_recipes,  # 추천 레시피 추가
+        'cook_steps_list': target_cook_steps,
+        'similar_recipes': top_similar_recipes
     }
 
     return render(request, 'detail.html', context)
+
 
 
 @login_required
