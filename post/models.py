@@ -14,12 +14,13 @@ class Recipe(models.Model):
     difficulty = models.CharField(max_length=10, null=False) 
     #ingredient = models.TextField(null=False) 
     cookstep = models.TextField(null=False)
-    ingredient = models.TextField(null=False)
     main_ingredients = models.TextField(null=False)
     sub_ingredients = models.TextField(null=False)
+    author = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    #updated_at = models.DateTimeField(auto_now=True, null=True)
+    #img_file = models.ImageField(upload_to='uploads/', null=True)
 
-
-    author_id = models.ForeignKey(UserModel, on_delete=models.CASCADE, null=True)
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
     img_file = models.ImageField(upload_to='uploads/', null=True)

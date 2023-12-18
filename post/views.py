@@ -6,6 +6,7 @@ from recommend.models import RecommendModel
 from user.models import UserModel
 from django.core.paginator import Paginator
 from django.shortcuts import render,redirect 
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -196,7 +197,7 @@ def upload_recipes(request):
             return redirect('/')
 
     elif request.method == 'POST':
-        author = request.user
+        author_id = request.user.id
         title = request.POST.get('title', '')
         img_file = request.FILES.get('img_url', '')
         timecost = request.POST.get('timecost', '')
@@ -205,7 +206,7 @@ def upload_recipes(request):
         main_ingredients = request.POST.get('main_ingredients', '')
         sub_ingredients = request.POST.get('sub_ingredients', '')
 
-        my_post = Recipe.objects.create(author=author, title=title, img_file=img_file, timecost=timecost,
+        my_post = Recipe.objects.create(author_id=author_id, title=title, img_file=img_file, timecost=timecost,
                                         difficulty=difficulty, cookstep=cookstep, main_ingredients=main_ingredients, sub_ingredients=sub_ingredients)
         my_post.save()
         return redirect('/')

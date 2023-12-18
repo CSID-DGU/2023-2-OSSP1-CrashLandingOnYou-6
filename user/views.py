@@ -74,7 +74,7 @@ def myrecipe(request, id):
         if user:
             me = request.user
             #내가 쓴 레시피 정보를 가져와서 보여줘야됨
-            myrecipe = Recipe.objects.filter(author=id)
+            myrecipe = Recipe.objects.filter(author_id=id)
             mycomment = CommentModel.objects.filter(comment_me=id)
             mylike = LikeModel.objects.filter(like_me=id)
             random_img = Recipe.objects.filter().order_by('?')[:1].values('img_url')[0]['img_url']
@@ -87,7 +87,7 @@ def myrecipe(request, id):
 @login_required
 def myrecipe_delete(request, id):
     myrecipe = Recipe.objects.get(id=id)
-    myrecipe_id = myrecipe.author.id
+    myrecipe_id = myrecipe.author_id.id
     myrecipe.delete()
     return redirect(f'/myrecipe/{myrecipe_id}')
 
