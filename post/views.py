@@ -8,6 +8,22 @@ from django.core.paginator import Paginator
 from django.shortcuts import render,redirect 
 from django.contrib.auth.decorators import login_required
 
+# 데이터베이스 삽입 위한 import 문 normalization.py 
+# from .models import Recipe
+# from django.shortcuts import render, redirect
+# from django.contrib.auth.decorators import login_required
+# from .normalization import normalize_and_update_data
+
+# recipe_classfication.py 위한 import 문
+from .recipe_classification import classify_new_recipe
+# views.py의 다른 임포트들
+from konlpy.tag import Mecab
+from eunjeon import Mecab
+
+# 전역 변수로 MeCab 객체를 초기화 - konlpy 용
+# mecab = Mecab(dicpath=r"C:/mecab/mecab-ko-dic")
+# mecab = Mecab()
+
 
 # Create your views here.
 
@@ -209,4 +225,11 @@ def upload_recipes(request):
         my_post = Recipe.objects.create(author_id=author_id, title=title, img_file=img_file, timecost=timecost,
                                         difficulty=difficulty, cookstep=cookstep, main_ingredients=main_ingredients, sub_ingredients=sub_ingredients)
         my_post.save()
+
+        # 정규화 함수 호출 및 정규화된 데이터로 업데이트 normalization.py 실행
+        #normalize_and_update_data(my_post.id)
+        
+       # 새 레시피 분류 함수 호출
+        #classification = classify_new_recipe()
+
         return redirect('/')

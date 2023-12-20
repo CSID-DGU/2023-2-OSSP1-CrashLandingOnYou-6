@@ -39,7 +39,7 @@ def sign_up_view(request):
             else:
                 UserModel.objects.create_user(
                     username=username, password=password, email=email)
-                return redirect('/signin')
+                return redirect('/')
 
 def sign_in_view(request):
     if request.method == 'POST':

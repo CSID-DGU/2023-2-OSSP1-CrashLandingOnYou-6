@@ -55,7 +55,7 @@ def view_detail(request, id):
     context = {
         'recipe': target_recipe,
         'like_status': user_likes_this,
-        'comments': all_comments,
+        'comment': all_comments,
         'main_ingredients_list': target_main_ingredients,
         'sub_ingredients_list': target_sub_ingredients,
         'cook_steps_list': target_cook_steps,
