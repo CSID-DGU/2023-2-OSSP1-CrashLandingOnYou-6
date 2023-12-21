@@ -52,9 +52,8 @@
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=MySQL&logoColor=white">
 
 ## 프로젝트 기능 요약
-![혼자서도 잘해요리 메인1](https://user-images.githubusercontent.com/61997714/185313870-7d35923f-d6a4-4e83-8cbe-67ff324f760f.gif)
-![혼자서도잘해요리 상세페이지](https://user-images.githubusercontent.com/61997714/185320540-e293b468-3841-4a1e-b921-8ad669055f42.gif)
-![혼자서도 잘해요리 나만의레시피](https://user-images.githubusercontent.com/61997714/185320657-c82b5f27-4073-4e2c-811b-42ed471f9195.gif)
+![메인서브](https://github.com/CSID-DGU/2023-2-OSSP1-CrashLandingOnYou-6/assets/92575773/41d72ff8-c5ed-4899-b099-d752cde68067)
+![추천](https://github.com/CSID-DGU/2023-2-OSSP1-CrashLandingOnYou-6/assets/92575773/9cd7974e-1483-4c5d-b238-4ce06b3a221d)
 
 # 📌프로젝트 구조
 
