@@ -92,7 +92,7 @@
 # 📌프로젝트 알고리즘 작동 방식
 - 프로젝트의 알고리즘 작동 방식은 사용자 입력 처리에 초점을 맞추고 있습니다.
 
-데이터베이스 테이블은 두 개다. 첫 번째 테이블는 레시피 정보를 저장합니다. 
+데이터베이스 테이블은 두 개입니다. 첫 번째 테이블는 레시피 정보를 저장합니다. 
 
 이 테이블은 레시피의 고유 번호(id), 이름(title), 이미지 URL(img_url), 조리 시간(timecost), 난이도(difficulty), 조리 단계(cookstep), 작성자 ID(author_id), 생성 및 업데이트 날짜(created_at, updated_at) 그리고 메인 및 서브 재료(main_ingredients, sub_ingredients), 정규화한 메인 및 서브 재료(n_main_ingredients, n_sub_ingredients)등을 포함합니다. 
 
