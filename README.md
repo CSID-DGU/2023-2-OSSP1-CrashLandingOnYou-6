@@ -91,7 +91,7 @@
 ### 마이페이지
 
 - 내가 작성한 글, 댓글, 북마크한 요리를 모아볼 수 있습니다
-- 
+  
 # 📌프로젝트 알고리즘 작동 방식
 ![메인서브](https://github.com/CSID-DGU/2023-2-OSSP1-CrashLandingOnYou-6/assets/92575773/41d72ff8-c5ed-4899-b099-d752cde68067)
 ![추천](https://github.com/CSID-DGU/2023-2-OSSP1-CrashLandingOnYou-6/assets/92575773/9cd7974e-1483-4c5d-b238-4ce06b3a221d)
